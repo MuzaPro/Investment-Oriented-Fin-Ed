@@ -20,6 +20,21 @@
     --initial-color: #95a5a6;
     --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
+
+    /* Dark theme variables */
+    --dark-background-color: #121212;
+    --dark-card-background: #1e1e1e;
+    --dark-text-color: #e0e0e0;
+    --dark-text-light: #a0a0a0;
+    --dark-border-color: #333333;
+    --dark-input-background: #2a2a2a;
+    --dark-chart-grid-color: rgba(255, 255, 255, 0.1);
+    --dark-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    --dark-inflated-color: #ff6b6b;
+    --dark-investment-color: #5ce892;
+    --dark-contribution-color: #5dade2;
+    --dark-initial-color: #bdc3c7;
+    --dark-info-background: #2a2a2a;
 }
 
 body {
@@ -503,4 +518,102 @@ input[type="range"]::-webkit-slider-thumb {
     h2 {
         font-size: 1.5rem;
     }
+}
+
+/* Theme toggle styles */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.theme-toggle button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.theme-toggle button:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.dark-icon {
+    display: none;
+}
+
+.light-icon {
+    display: inline-block;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .dark-icon {
+    display: inline-block;
+}
+
+body.dark-mode .light-icon {
+    display: none;
+}
+
+body.dark-mode .step-content {
+    background-color: var(--dark-card-background);
+    box-shadow: var(--dark-shadow);
+}
+
+body.dark-mode input[type="number"],
+body.dark-mode input[type="range"] {
+    background-color: var(--dark-input-background);
+    border-color: var(--dark-border-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .insight-box,
+body.dark-mode .learn-more-content,
+body.dark-mode .summary-container {
+    background-color: var(--dark-info-background);
+    border-color: var(--dark-border-color);
+}
+
+body.dark-mode .summary-label {
+    color: var(--dark-text-light);
+}
+
+body.dark-mode .nav-button {
+    background-color: var(--dark-card-background);
+    border-color: var(--dark-border-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .preset-button {
+    background-color: var(--dark-input-background);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .footer {
+    color: var(--dark-text-light);
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4 {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .footer a {
+    color: var(--dark-contribution-color);
 }

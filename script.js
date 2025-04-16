@@ -664,6 +664,114 @@ function navigateToStep(stepNumber) {
     }
 }
 
+// Function to initialize theme
+function initTheme() {
+    const themeToggle = document.getElementById('themeToggle');
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('darkMode');
+    
+    // Apply saved preference if available
+    if (savedTheme === 'true') {
+        document.body.classList.add('dark-mode');
+        updateChartsTheme(true);
+    }
+    
+    // Add event listener for theme toggle
+    themeToggle.addEventListener('click', toggleDarkMode);
+}
+
+// Function to toggle dark mode
+function toggleDarkMode() {
+    const isDarkMode = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+    updateChartsTheme(isDarkMode);
+}
+
+// Function to update chart themes
+function updateChartsTheme(isDarkMode) {
+    const chartTheme = {
+        gridColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+        textColor: isDarkMode ? '#e0e0e0' : '#666666',
+        initialColor: isDarkMode ? '#bdc3c7' : '#95a5a6',
+        inflationColor: isDarkMode ? '#ff6b6b' : '#e74c3c',
+        investmentColor: isDarkMode ? '#5ce892' : '#2ecc71',
+        contributionColor: isDarkMode ? '#5dade2' : '#3498db'
+    };
+    
+    // Update each chart if it exists
+    if (inflationChart) {
+        updateChartColors(inflationChart, chartTheme);
+    }
+    if (investmentChart) {
+        updateChartColors(investmentChart, chartTheme);
+    }
+    if (contributionChart) {
+        updateChartColors(contributionChart, chartTheme);
+    }
+    if (fullChart) {
+        updateChartColors(fullChart, chartTheme);
+    }
+}
+
+// Function to update chart colors
+function updateChartColors(chart, theme) {
+    // Update scales
+    if (chart.options.scales.x) {
+        chart.options.scales.x.grid.color = theme.gridColor;
+        chart.options.scales.x.ticks.color = theme.textColor;
+        chart.options.scales.y.grid.color = theme.gridColor;
+        chart.options.scales.y.ticks.color = theme.textColor;
+    }
+    
+    // Update datasets
+    chart.data.datasets.forEach(dataset => {
+        if (dataset.label.includes('Initial Amount')) {
+            dataset.borderColor = theme.initialColor;
+        } else if (dataset.label.includes('Inflation') || dataset.label.includes('Purchasing Power')) {
+            dataset.borderColor = theme.inflationColor;
+            dataset.backgroundColor = hexToRgba(theme.inflationColor, 0.1);
+        } else if (dataset.label.includes('Investment') && !dataset.label.includes('Contributions')) {
+            dataset.borderColor = theme.investmentColor;
+            dataset.backgroundColor = hexToRgba(theme.investmentColor, 0.1);
+        } else if (dataset.label.includes('Contributions') || dataset.label.includes('Monthly')) {
+            dataset.borderColor = theme.contributionColor;
+            dataset.backgroundColor = hexToRgba(theme.contributionColor, 0.1);
+        }
+    });
+    
+    // Update annotations
+    if (chart.options.plugins?.annotation?.annotations) {
+        const annotations = chart.options.plugins.annotation.annotations;
+        
+        for (let key in annotations) {
+            const annotation = annotations[key];
+            if (annotation.label?.backgroundColor) {
+                if (annotation.label.backgroundColor === '#e74c3c') {
+                    annotation.label.backgroundColor = theme.inflationColor;
+                    annotation.borderColor = theme.inflationColor;
+                } else if (annotation.label.backgroundColor === '#2ecc71') {
+                    annotation.label.backgroundColor = theme.investmentColor;
+                    annotation.borderColor = theme.investmentColor;
+                } else if (annotation.label.backgroundColor === '#3498db') {
+                    annotation.label.backgroundColor = theme.contributionColor;
+                    annotation.borderColor = theme.contributionColor;
+                }
+            }
+        }
+    }
+    
+    chart.update();
+}
+
+// Helper function to convert hex to rgba
+function hexToRgba(hex, alpha = 1) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     // Step 1: Begin button event listener
@@ -761,6 +869,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('toggleInflation').addEventListener('change', initFullChart);
     document.getElementById('toggleInvestment').addEventListener('change', initFullChart);
     document.getElementById('toggleContribution').addEventListener('change', initFullChart);
+    
+    // Initialize theme
+    initTheme();
     
     // Start with step 1 active
     navigateToStep(1);
