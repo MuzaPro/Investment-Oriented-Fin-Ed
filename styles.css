@@ -1,0 +1,506 @@
+/* Base styles and reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #3498db;
+    --primary-hover: #2980b9;
+    --secondary-color: #2ecc71;
+    --tertiary-color: #e74c3c;
+    --neutral-color: #f9f9f9;
+    --text-color: #333;
+    --text-light: #7f8c8d;
+    --border-color: #e0e0e0;
+    --inflated-color: #e74c3c;
+    --investment-color: #2ecc71;
+    --contribution-color: #3498db;
+    --initial-color: #95a5a6;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--neutral-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3, h4 {
+    color: #2c3e50;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 0.2em;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-top: 0.5em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 2em;
+    font-size: 1.1rem;
+}
+
+/* Progress Steps */
+.progress-container {
+    margin: 2em 0;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+    opacity: 0.5;
+    transition: var(--transition);
+}
+
+.step.active {
+    opacity: 1;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    background-color: var(--text-light);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.step.active .step-number {
+    background-color: var(--primary-color);
+}
+
+.step-label {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.progress-bar {
+    height: 6px;
+    background-color: var(--border-color);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    width: 0%;
+    transition: var(--transition);
+}
+
+/* Step Content */
+.step-content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    display: none;
+}
+
+.step-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Introduction Step */
+.intro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em 0;
+}
+
+.intro-image {
+    color: var(--primary-color);
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+.intro-form {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Content Layout */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 2em 0;
+}
+
+.controls-container {
+    flex: 1;
+    min-width: 250px;
+}
+
+.chart-container {
+    flex: 2;
+    min-height: 300px;
+    position: relative;
+}
+
+/* Full calculator specific layout */
+.full-calculator {
+    gap: 40px;
+}
+
+.chart-and-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form Elements */
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+input[type="number"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.range-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+input[type="range"] {
+    flex: 1;
+    height: 5px;
+    background: var(--border-color);
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+}
+
+.highlight-input {
+    background-color: rgba(52, 152, 219, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Chart Toggles */
+.chart-toggles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.toggle-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toggle-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* Insights */
+.insight-container {
+    margin: 1.5em 0;
+}
+
+.insight-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.insight-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5em;
+}
+
+.insight-box p {
+    margin: 0;
+}
+
+/* Learn More Sections */
+.learn-more-container {
+    margin: 1.5em 0;
+}
+
+.learn-more-toggle {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    padding: 0;
+}
+
+.learn-more-toggle:hover {
+    text-decoration: underline;
+}
+
+.learn-more-content {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 15px;
+    display: none;
+}
+
+.learn-more-content.active {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.learn-more-content h4 {
+    font-size: 1rem;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+.learn-more-content h4:first-child {
+    margin-top: 0;
+}
+
+.learn-more-content p, .learn-more-content ul {
+    font-size: 0.95rem;
+    margin-bottom: 1em;
+}
+
+.learn-more-content ul {
+    padding-left: 20px;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.nav-button {
+    padding: 10px 20px;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.next-button, .primary-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.next-button:hover, .primary-button:hover {
+    background-color: var(--primary-hover);
+}
+
+.back-button:hover {
+    background-color: #f1f1f1;
+}
+
+.restart-button {
+    background-color: var(--tertiary-color);
+    color: white;
+    border: none;
+}
+
+.restart-button:hover {
+    background-color: #c0392b;
+}
+
+.primary-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 1em;
+}
+
+/* Summary */
+.summary-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 1em;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.summary-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .content-container {
+        flex-direction: row;
+    }
+    
+    .chart-and-summary {
+        flex-direction: row;
+    }
+    
+    .chart-container {
+        flex: 3;
+    }
+    
+    .summary-container {
+        flex: 2;
+    }
+    
+    .step-label {
+        font-size: 0.9rem;
+    }
+    
+    .intro-container {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    .intro-image {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .progress-steps {
+        display: none;
+    }
+    
+    .step-content {
+        padding: 20px;
+    }
+    
+    .chart-toggles {
+        grid-template-columns: 1fr;
+    }
+    
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+}

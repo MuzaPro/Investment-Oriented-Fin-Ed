@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Education Journey</title>
+    <!-- Chart.js for creating beautiful charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chartjs-plugin-annotation for chart annotations -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Money's Journey</h1>
+        <p class="subtitle">Learn how smart investment decisions can transform your financial future</p>
+        
+        <!-- Progress Indicator -->
+        <div class="progress-container">
+            <div class="progress-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Start</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Inflation</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Investing</div>
+                </div>
+                <div class="step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Contributing</div>
+                </div>
+                <div class="step" data-step="5">
+                    <div class="step-number">5</div>
+                    <div class="step-label">Explore</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+        
+        <!-- Step 1: Introduction -->
+        <div class="step-content active" id="step1">
+            <h2>Let's Begin Your Investment Journey</h2>
+            <p>Discover how your money can work for you over time. We'll explore the impact of inflation, the power of investing, and the magic of regular contributions.</p>
+            
+            <div class="intro-container">
+                <div class="intro-image">
+                    <i class="fas fa-coins fa-6x"></i>
+                </div>
+                <div class="intro-form">
+                    <div class="input-group">
+                        <label for="initialAmount">Let's start with an amount (₪):</label>
+                        <input type="number" id="initialAmount" value="1000" min="1">
+                    </div>
+                    <button id="beginButton" class="primary-button">Begin The Journey</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 2: The Inflation Problem -->
+        <div class="step-content" id="step2">
+            <h2>The Hidden Cost of Cash</h2>
+            <p>Money kept uninvested loses value over time due to inflation. See how your purchasing power erodes year after year.</p>
+            
+            <div class="content-container">
+                <div class="controls-container">
+                    <div class="input-group">
+                        <label for="years2">Time Horizon (Years):</label>
+                        <div class="range-container">
+                            <input type="range" id="years2" min="1" max="30" value="10">
+                            <span id="yearsValue2">10</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="inflationRate">Inflation Rate (%):</label>
+                        <div class="range-container">
+                            <input type="range" id="inflationRate" min="0" max="10" step="0.5" value="2.5">
+                            <span id="inflationValue">2.5</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Learn More Section -->
+                    <div class="learn-more-container">
+                        <button class="learn-more-toggle">
+                            <i class="fas fa-lightbulb"></i> Learn more about inflation
+                        </button>
+                        <div class="learn-more-content">
+                            <h4>What is Inflation?</h4>
+                            <p>Inflation is the rate at which the general level of prices for goods and services rises, causing purchasing power to fall over time.</p>
+                            
+                            <h4>How Inflation Affects You</h4>
+                            <p>If inflation is 2.5% per year, something that costs ₪100 today will cost approximately ₪128 in 10 years.</p>
+                            
+                            <h4>Historical Context</h4>
+                            <p>In Israel, inflation has averaged around 2-3% in recent years, but was much higher in previous decades, even reaching over 400% in the 1980s.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="inflationChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="insight-container">
+                <div class="insight-box">
+                    <h3>Key Insight</h3>
+                    <p id="inflationInsight">In 10 years, your ₪1,000 will only buy what ₪781 buys today.</p>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="nav-button back-button" data-target="1"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="nav-button next-button" data-target="3">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+        
+        <!-- Step 3: The Investment Solution -->
+        <div class="step-content" id="step3">
+            <h2>The Growth Engine</h2>
+            <p>Investing can help your money grow faster than inflation erodes it. See the power of compound returns over time.</p>
+            
+            <div class="content-container">
+                <div class="controls-container">
+                    <div class="input-group">
+                        <label for="years3">Time Horizon (Years):</label>
+                        <div class="range-container">
+                            <input type="range" id="years3" min="1" max="30" value="10">
+                            <span id="yearsValue3">10</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="inflationRate3">Inflation Rate (%):</label>
+                        <div class="range-container">
+                            <input type="range" id="inflationRate3" min="0" max="10" step="0.5" value="2.5">
+                            <span id="inflationValue3">2.5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group highlight-input">
+                        <label for="investmentReturn">Investment Return (%):</label>
+                        <div class="range-container">
+                            <input type="range" id="investmentReturn" min="0" max="15" step="0.5" value="7.5">
+                            <span id="returnValue">7.5</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Learn More Section -->
+                    <div class="learn-more-container">
+                        <button class="learn-more-toggle">
+                            <i class="fas fa-lightbulb"></i> Learn more about investment returns
+                        </button>
+                        <div class="learn-more-content">
+                            <h4>Types of Investments</h4>
+                            <p>Different investments have different potential returns:</p>
+                            <ul>
+                                <li><strong>Stocks:</strong> Historically 7-10% average annual returns</li>
+                                <li><strong>Bonds:</strong> Typically 2-5% returns</li>
+                                <li><strong>Real Estate:</strong> Often 3-7% returns</li>
+                            </ul>
+                            
+                            <h4>Risk vs. Return</h4>
+                            <p>Generally, higher potential returns come with higher risk. Diversification can help manage this risk.</p>
+                            
+                            <h4>Compound Growth</h4>
+                            <p>Investment returns compound over time - your returns earn returns of their own, accelerating growth.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="investmentChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="insight-container">
+                <div class="insight-box">
+                    <h3>Key Insight</h3>
+                    <p id="investmentInsight">By investing at 7.5%, your ₪1,000 grows to ₪2,061 after 10 years - outpacing inflation.</p>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="nav-button back-button" data-target="2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="nav-button next-button" data-target="4">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+        
+        <!-- Step 4: The Contribution Power -->
+        <div class="step-content" id="step4">
+            <h2>The Multiplier Effect</h2>
+            <p>Adding regular contributions to your investments can dramatically accelerate your wealth growth.</p>
+            
+            <div class="content-container">
+                <div class="controls-container">
+                    <div class="input-group">
+                        <label for="years4">Time Horizon (Years):</label>
+                        <div class="range-container">
+                            <input type="range" id="years4" min="1" max="30" value="10">
+                            <span id="yearsValue4">10</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="inflationRate4">Inflation Rate (%):</label>
+                        <div class="range-container">
+                            <input type="range" id="inflationRate4" min="0" max="10" step="0.5" value="2.5">
+                            <span id="inflationValue4">2.5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="investmentReturn4">Investment Return (%):</label>
+                        <div class="range-container">
+                            <input type="range" id="investmentReturn4" min="0" max="15" step="0.5" value="7.5">
+                            <span id="returnValue4">7.5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group highlight-input">
+                        <label for="monthlyContribution">Monthly Contribution (₪):</label>
+                        <div class="range-container">
+                            <input type="range" id="monthlyContribution" min="0" max="1000" step="10" value="100">
+                            <span id="contributionValue">100</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Learn More Section -->
+                    <div class="learn-more-container">
+                        <button class="learn-more-toggle">
+                            <i class="fas fa-lightbulb"></i> Learn more about compound growth
+                        </button>
+                        <div class="learn-more-content">
+                            <h4>The Eighth Wonder of the World</h4>
+                            <p>Albert Einstein reportedly called compound interest "the eighth wonder of the world," saying "He who understands it, earns it; he who doesn't, pays it."</p>
+                            
+                            <h4>Regular Contributions</h4>
+                            <p>When you contribute regularly, each contribution has time to grow and compound, dramatically increasing your final results.</p>
+                            
+                            <h4>Start Early</h4>
+                            <p>Starting early, even with smaller amounts, often leads to better results than starting later with larger amounts.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="contributionChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="insight-container">
+                <div class="insight-box">
+                    <h3>Key Insight</h3>
+                    <p id="contributionInsight">Adding just ₪100 monthly grows your investment to ₪20,655 after 10 years - 10× more than your initial investment!</p>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="nav-button back-button" data-target="3"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="nav-button next-button" data-target="5">See Full Calculator <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+        
+        <!-- Step 5: Full Calculator -->
+        <div class="step-content" id="step5">
+            <h2>Explore All Possibilities</h2>
+            <p>Experiment with different scenarios to see how your investment could grow over time.</p>
+            
+            <div class="content-container full-calculator">
+                <div class="controls-container">
+                    <div class="input-group">
+                        <label for="initialAmountFull">Initial Amount (₪):</label>
+                        <input type="number" id="initialAmountFull" value="1000" min="1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="yearsFull">Time Horizon (Years):</label>
+                        <div class="range-container">
+                            <input type="range" id="yearsFull" min="1" max="30" value="10">
+                            <span id="yearsValueFull">10</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="inflationRateFull">Inflation Rate (%):</label>
+                        <div class="range-container">
+                            <input type="range" id="inflationRateFull" min="0" max="10" step="0.5" value="2.5">
+                            <span id="inflationValueFull">2.5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="investmentReturnFull">Investment Return (%):</label>
+                        <div class="range-container">
+                            <input type="range" id="investmentReturnFull" min="0" max="15" step="0.5" value="7.5">
+                            <span id="returnValueFull">7.5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="monthlyContributionFull">Monthly Contribution (₪):</label>
+                        <input type="number" id="monthlyContributionFull" value="100" min="0">
+                    </div>
+                    
+                    <div class="chart-toggles">
+                        <div class="toggle-item">
+                            <input type="checkbox" id="toggleInitial" checked>
+                            <label for="toggleInitial">Initial Amount</label>
+                        </div>
+                        <div class="toggle-item">
+                            <input type="checkbox" id="toggleInflation" checked>
+                            <label for="toggleInflation">Inflation Adjusted</label>
+                        </div>
+                        <div class="toggle-item">
+                            <input type="checkbox" id="toggleInvestment" checked>
+                            <label for="toggleInvestment">Investment Only</label>
+                        </div>
+                        <div class="toggle-item">
+                            <input type="checkbox" id="toggleContribution" checked>
+                            <label for="toggleContribution">With Contributions</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-and-summary">
+                    <div class="chart-container">
+                        <canvas id="fullChart"></canvas>
+                    </div>
+                    
+                    <div class="summary-container">
+                        <h3>Results Summary</h3>
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <div class="summary-label">Initial Investment</div>
+                                <div id="initialSummary" class="summary-value">₪1,000</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Total Contributions</div>
+                                <div id="contributionsSummary" class="summary-value">₪12,000</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Investment Growth</div>
+                                <div id="growthSummary" class="summary-value">₪7,655</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Final Amount</div>
+                                <div id="finalSummary" class="summary-value">₪20,655</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">vs. Uninvested</div>
+                                <div id="comparisonSummary" class="summary-value">+₪19,874</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Return on Investment</div>
+                                <div id="roiSummary" class="summary-value">158.8%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="nav-button back-button" data-target="4"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="nav-button restart-button" data-target="1"><i class="fas fa-redo"></i> Start Over</button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Created by Gabriele Meilikhov, Scientific Communication Specialist | <a href="https://www.muza.productions/" target="_blank">Muza Productions</a></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
