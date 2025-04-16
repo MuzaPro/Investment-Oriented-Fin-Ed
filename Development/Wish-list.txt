@@ -1,0 +1,41 @@
+Features we must add or modify:
+
+************
+Dark mode
+************
+
+
+************
+the chart animated to appear from scratch every time the values are modified by the user. if possible- it would be better if the chart could adjust instead of animating. 
+Even if it changes with a 'jump' and no animation it would still be more clear to the viewer.
+************
+
+
+
+************
+when we expand the 'learn more...' sections, it changes the chart size (big stretch vertically), 
+which is actually nice, but we need the chart to adjust back when we close the expended section.
+************
+
+
+************
+The monthly contribution input is nice but not ideal.
+If people are using 1000 (the default value) for their initial investment, then adding a monthly 100 (which is 10%) is not very realistic.
+The range is 1 to 1000, which is very convinient to adjust but not very informative in this context.
+We need to consider a free style input or find some way to adjust the numbers in the slider to carry more meaning.
+
+One way I would consider to use this tool is by noting to the user that the numbers are all in thousands. Then we would typically start with ~80-150k and the monthly contribution would be 800-2000 NIS (not thousands)
+
+
+I know that the next page let's the user run wild and put any number they'd like, but still, we should find a way to make page 4 more meaningful.
+************
+
+
+************
+The visuals on the first page with the SVG of coins is very good. we should add a visual touch to every page.
+************
+
+
+
+
+

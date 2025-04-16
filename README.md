@@ -6,7 +6,7 @@ An interactive educational tool that teaches the importance of investing and reg
 
 ## About The Project
 
-This interactive calculator was designed as an educational tool to help explain complex investment concepts in a simple, progressive way. It walks users through the fundamental concepts of:
+This interactive calculator was designed as an educational tool to help explain basic investment concepts in a simple, progressive way. It walks users through the fundamental concepts of:
 
 1. **The impact of inflation** on savings over time
 2. **The power of investment returns** to combat inflation
@@ -44,9 +44,9 @@ The application uses visual storytelling and interactive elements to make abstra
 
 3. Launch the application by opening `index.html` in your browser, or use a local development server
 
-### GitHub Pages Deployment
+### Try the Demo!
 
-The site is automatically deployed via GitHub Pages at: https://your-username.github.io/investment-education-journey/
+The site is automatically deployed via GitHub Pages at: https://muzapro.github.io/Investment-Oriented-Fin-Ed/
 
 ## How To Use
 
